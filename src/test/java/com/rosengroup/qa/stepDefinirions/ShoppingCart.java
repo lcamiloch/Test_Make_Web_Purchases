@@ -36,7 +36,9 @@ public class ShoppingCart {
         report = new ReportConfig();
         configDriver = new DriverConfig();
         driver = configDriver.selectNavigator();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(7));
+        wait = new WebDriverWait(driver,
+                Duration.ofSeconds(Long.parseLong(
+                        PropertiesConfig.getParameter("WaitDurationExpected"))));
         driver.navigate().to(PropertiesConfig.getParameter("web"));
     }
 
@@ -60,7 +62,8 @@ public class ShoppingCart {
         addToShoppingCart.itemEight();
         addToShoppingCart.itemNine();
         addToShoppingCart.itemTen();
-        Assert.assertEquals(products, validateShoppingCart.validatePurchasedProducts());
+        Assert.assertEquals(products,
+                validateShoppingCart.validatePurchasedProducts());
     }
 
     @And("He then deletes them")
@@ -71,7 +74,8 @@ public class ShoppingCart {
 
     @Then("^He should see the shopping cart (.*)$")
     public void VerifyEmptyShoppingCart(String key) {
-        Assert.assertTrue(validateShoppingCart.validateRemovedProducts().contains(key));
+        Assert.assertTrue(validateShoppingCart
+                .validateRemovedProducts().contains(key));
     }
 
     @After
