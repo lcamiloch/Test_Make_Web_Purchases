@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sun.security.jca.GetInstance;
 
 import java.time.Duration;
 
@@ -16,8 +17,18 @@ import java.time.Duration;
  */
 public class DriverConfig {
 
-    public static WebDriverWait wait;
-    public static WebDriver driver;
+    private static WebDriverWait wait;
+    private static WebDriver driver;
+
+    private DriverConfig(){}
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
+    public static WebDriverWait getWait() {
+        return wait;
+    }
 
     public static void initializeDriver(){
         switch (PropertiesConfig.getParameter("Browser")){

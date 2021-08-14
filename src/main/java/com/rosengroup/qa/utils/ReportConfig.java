@@ -19,11 +19,11 @@ import java.util.Random;
  */
 public class ReportConfig {
 
-    static Random numRand;
-    static File screenshot;
-    public static ExtentTest report;
-    static ExtentReports extent;
-    static ExtentHtmlReporter htmlReporter;
+    private static Random numRand;
+    private static File screenshot;
+    private static ExtentTest report;
+    private static ExtentReports extent;
+    private static ExtentHtmlReporter htmlReporter;
 
     public static void initializeReport() {
         extent = new ExtentReports();

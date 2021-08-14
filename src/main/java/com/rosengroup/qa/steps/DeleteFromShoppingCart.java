@@ -23,18 +23,18 @@ public class DeleteFromShoppingCart extends Functions {
     }
 
     public void clickOnShoppingCart(){
-        ReportConfig.screenshot(DriverConfig.driver, "Click on shopping cart", "info", homePage.dropdown_List_Products);
-        DriverConfig.driver.findElement(homePage.label_products_numbers).click();
+        ReportConfig.screenshot(DriverConfig.getDriver(), "Click on shopping cart", "info", homePage.getDropdown_List_Products());
+        DriverConfig.getDriver().findElement(homePage.getLabel_products_numbers()).click();
     }
 
     public void deleteItems(int products){
         for(int i=products; i > 0; i-- ){
-            shoppingCartSummary.setImgItemDelete(i);
-            shoppingCartSummary.setRowProductDeleted(i);
-            scrollToWebElement(shoppingCartSummary.row_product_deleted);
-            ReportConfig.screenshot(DriverConfig.driver, "Product " + i + " removed", "info", shoppingCartSummary.row_product_deleted);
-            DriverConfig.driver.findElement(shoppingCartSummary.img_item_delete).click();
-            DriverConfig.wait.until(ExpectedConditions.invisibilityOf(DriverConfig.driver.findElement(shoppingCartSummary.img_item_delete)));
+            shoppingCartSummary.setImg_item_delete(i);
+            shoppingCartSummary.setRow_product_deleted(i);
+            scrollToWebElement(shoppingCartSummary.getRow_product_deleted());
+            ReportConfig.screenshot(DriverConfig.getDriver(), "Product " + i + " removed", "info", shoppingCartSummary.getRow_product_deleted());
+            DriverConfig.getDriver().findElement(shoppingCartSummary.getImg_item_delete()).click();
+            DriverConfig.getWait().until(ExpectedConditions.invisibilityOf(DriverConfig.getDriver().findElement(shoppingCartSummary.getImg_item_delete())));
         }
     }
 }

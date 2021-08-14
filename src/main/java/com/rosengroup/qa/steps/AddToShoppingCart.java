@@ -11,8 +11,8 @@ import org.openqa.selenium.By;
  */
 public class AddToShoppingCart extends Functions {
 
-    int productNumber = 0;
-    boolean changeColor = false;
+    private int productNumber = 0;
+    private boolean changeColor = false;
     HomePage homePage;
 
     public AddToShoppingCart() {
@@ -21,68 +21,68 @@ public class AddToShoppingCart extends Functions {
 
     public void itemOne() {
         productNumber++;
-        scrollToWebElement(homePage.img_item_first);
-        addItemAndContinueShopping(homePage.img_item_first);
+        scrollToWebElement(homePage.getImg_item_first());
+        addItemAndContinueShopping(homePage.getImg_item_first());
     }
 
     public void itemTwo() {
         productNumber++;
-        addItemAndContinueShopping(homePage.img_item_second);
+        addItemAndContinueShopping(homePage.getImg_item_second());
     }
 
     public void itemThree() {
         productNumber++;
-        addItemAndContinueShopping(homePage.img_item_third);
+        addItemAndContinueShopping(homePage.getImg_item_third());
     }
 
     public void itemFour() {
         productNumber++;
-        addItemAndContinueShopping(homePage.img_item_fourth);
+        addItemAndContinueShopping(homePage.getImg_item_fourth());
     }
 
     public void itemFive() {
         productNumber++;
-        scrollToWebElement(homePage.img_item_fifth);
-        addItemAndContinueShopping(homePage.img_item_fifth);
+        scrollToWebElement(homePage.getImg_item_fifth());
+        addItemAndContinueShopping(homePage.getImg_item_fifth());
     }
 
     public void itemSix() {
         productNumber++;
-        addItemAndContinueShopping(homePage.img_item_sixth);
+        addItemAndContinueShopping(homePage.getImg_item_sixth());
     }
 
     public void itemSeven() {
         productNumber++;
-        addItemAndContinueShopping(homePage.img_item_seventh);
+        addItemAndContinueShopping(homePage.getImg_item_seventh());
     }
 
     public void itemEight() {
         productNumber++;
         changeColor = true;
-        scrollToWebElement(homePage.img_item_first);
-        addItemAndContinueShopping(homePage.img_item_first);
+        scrollToWebElement(homePage.getImg_item_first());
+        addItemAndContinueShopping(homePage.getImg_item_first());
     }
 
     public void itemNine() {
         productNumber++;
         changeColor = true;
-        addItemAndContinueShopping(homePage.img_item_second);
+        addItemAndContinueShopping(homePage.getImg_item_second());
     }
 
     public void itemTen() {
         productNumber++;
         changeColor = true;
-        addItemAndContinueShopping(homePage.img_item_third);
+        addItemAndContinueShopping(homePage.getImg_item_third());
     }
 
     public void addItemAndContinueShopping(By item){
         moveToElementAndClick(item);
         if(changeColor){
-            selectDropDownListSize(homePage.dropdown_List_Size,
-                    homePage.dropdown_List_report, 1, "2");
+            selectDropDownListSize(homePage.getDropdown_List_Size(),
+                    homePage.getDropdown_List_report(), 1, "2");
             changeColor = false;
         }
-        addItems(homePage.button_add_item,1, productNumber);
-        clickToContinueShopping(homePage.button_continue_shopping);
+        addItems(homePage.getButton_add_item(),1, productNumber);
+        clickToContinueShopping(homePage.getButton_continue_shopping());
     }
 }

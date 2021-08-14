@@ -23,15 +23,19 @@ public class ValidateShoppingCart extends Functions {
     }
 
     public String validatePurchasedProducts(){
-        scrollToWebElement(homePage.img_title);
-        products = DriverConfig.driver.findElement(homePage.label_products_numbers).getText();
-        ReportConfig.screenshot(DriverConfig.driver, "Validate products", "pass", homePage.label_products_numbers);
+        scrollToWebElement(homePage.getImg_title());
+        products = DriverConfig.getDriver()
+                .findElement(homePage.getLabel_products_numbers()).getText();
+        ReportConfig.screenshot(DriverConfig.getDriver(),
+                "Validate products", "pass", homePage.getLabel_products_numbers());
         return products;
     }
 
     public String validateRemovedProducts(){
-        products = DriverConfig.driver.findElement(shoppingCartSummary.label_shopping_cart_empty).getText();
-        ReportConfig.screenshot(DriverConfig.driver, "Validate shopping cart empty", "pass", shoppingCartSummary.label_shopping_cart_empty);
+        products = DriverConfig.getDriver()
+                .findElement(shoppingCartSummary.getLabel_shopping_cart_empty()).getText();
+        ReportConfig.screenshot(DriverConfig.getDriver(),
+                "Validate shopping cart empty", "pass", shoppingCartSummary.getLabel_shopping_cart_empty());
         return products;
     }
 }

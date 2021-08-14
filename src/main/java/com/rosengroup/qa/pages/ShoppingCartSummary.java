@@ -9,17 +9,30 @@ import org.openqa.selenium.By;
  */
 public class ShoppingCartSummary {
 
-    public By img_item_delete;
-    public By row_product_deleted;
-    public By label_shopping_cart_empty = By.xpath("//ul[@id='order_step']//following::p");
+    private By img_item_delete;
+    private By row_product_deleted;
+    private final By label_shopping_cart_empty = By.xpath("//ul[@id='order_step']//following::p");
 
-    public void setImgItemDelete(int productNumber){
+
+    public By getImg_item_delete() {
+        return img_item_delete;
+    }
+
+    public void setImg_item_delete(int productNumber) {
         img_item_delete = By.xpath(
                 "(//i[@class='icon-trash'])[" + productNumber + "]");
     }
 
-    public void setRowProductDeleted(int rowProductDeleted){
+    public By getRow_product_deleted() {
+        return row_product_deleted;
+    }
+
+    public void setRow_product_deleted(int rowProductDeleted) {
         row_product_deleted = By.xpath(
                 "//tr[starts-with(@id,'product')][" + rowProductDeleted + "]");
+    }
+
+    public By getLabel_shopping_cart_empty() {
+        return label_shopping_cart_empty;
     }
 }

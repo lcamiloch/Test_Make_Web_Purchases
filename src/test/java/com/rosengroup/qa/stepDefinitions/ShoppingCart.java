@@ -13,6 +13,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+
 import static com.rosengroup.qa.utils.DriverConfig.*;
 import static com.rosengroup.qa.utils.ReportConfig.initializeReport;
 import static java.lang.Integer.parseInt;
@@ -38,7 +39,7 @@ public class ShoppingCart {
 
     @Given("The customer wants to test the functionality of the shopping cart")
     public void initialStep() {
-        ReportConfig.logReport(DriverConfig.driver.getCurrentUrl(), "info");
+        ReportConfig.logReport(DriverConfig.getDriver().getCurrentUrl(), "info");
         addToShoppingCart = new AddToShoppingCart();
         validateShoppingCart = new ValidateShoppingCart();
         deleteFromShoppingCart = new DeleteFromShoppingCart();
