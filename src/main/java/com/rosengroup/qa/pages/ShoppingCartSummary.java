@@ -1,15 +1,13 @@
 package com.rosengroup.qa.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
+/**
+ * @autor: Camilo Chaparro
+ * @version: 1.0.0
+ * @since: 1.0.0
+ */
 public class ShoppingCartSummary {
-
-    WebDriver driver;
-
-    public ShoppingCartSummary(WebDriver driver){
-        this.driver = driver;
-    }
 
     public By img_item_delete;
     public By row_product_deleted;

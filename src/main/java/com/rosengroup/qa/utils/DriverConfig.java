@@ -5,14 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
+/**
+ * @autor: Camilo Chaparro
+ * @version: 1.0.0
+ * @since: 1.0.0
+ */
 public class DriverConfig {
 
-    WebDriver driver;
+    public static WebDriverWait wait;
+    public static WebDriver driver;
 
-    public WebDriver selectNavigator(){
+    public static void initializeDriver(){
         switch (PropertiesConfig.getParameter("Browser")){
             case "chrome":
                 WebDriverManager.chromedriver().setup();
@@ -29,11 +36,19 @@ public class DriverConfig {
             default:
                 System.out.println(" !!! Browser not found !!! ");
         }
-        driver.manage().timeouts().implicitlyWait(Long.parseLong(PropertiesConfig
-                .getParameter("ImplicitlyWait")), TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(Long.parseLong(PropertiesConfig
-                .getParameter("PageLoadTimeout")), TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        return driver;
+        driver.navigate().to(PropertiesConfig.getParameter("web"));
     }
+
+    public static void disconnectDriver(){
+        driver.close();
+        driver.quit();
+    }
+
+    public static void waitDriver(){
+        wait = new WebDriverWait(
+                DriverConfig.driver, Duration.ofSeconds(Long.parseLong(
+                        PropertiesConfig.getParameter("ExpectedWaitingTime"))));
+    }
+
 }

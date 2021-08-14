@@ -1,15 +1,13 @@
 package com.rosengroup.qa.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
+/**
+ * @autor: Camilo Chaparro
+ * @version: 1.0.0
+ * @since: 1.0.0
+ */
 public class HomePage {
-
-    WebDriver driver;
-
-    public HomePage(WebDriver driver){
-        this.driver = driver;
-    }
 
     public By img_item_first = By.xpath("(//a[@class='product_img_link']//img)[1]");
     public By img_item_second = By.xpath("(//a[@class='product_img_link']//img)[2]");

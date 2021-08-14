@@ -2,28 +2,21 @@ package com.rosengroup.qa.steps;
 
 import com.rosengroup.qa.pages.HomePage;
 import com.rosengroup.qa.utils.Functions;
-import com.rosengroup.qa.utils.ReportConfig;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * @autor: Camilo Chaparro
+ * @version: 1.0.0
+ * @since: 1.0.0
+ */
 public class AddToShoppingCart extends Functions {
 
     int productNumber = 0;
     boolean changeColor = false;
-    WebDriver driver;
     HomePage homePage;
-    WebDriverWait wait;
-    ReportConfig report;
 
-    public AddToShoppingCart(WebDriver driver, ReportConfig report, WebDriverWait wait) {
-        super(driver, report, wait);
-        this.wait = wait;
-        this.driver = driver;
-        this.report = report;
-        report.flowName("RTRC_test");
-        report.logReport(driver.getCurrentUrl(), "info");
-        homePage = new HomePage(driver);
+    public AddToShoppingCart() {
+        homePage = new HomePage();
     }
 
     public void itemOne() {

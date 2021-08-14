@@ -12,32 +12,37 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * @autor: Camilo Chaparro
+ * @version: 1.0.0
+ * @since: 1.0.0
+ */
 public class ReportConfig {
 
-    Random numRand;
-    File screenshot;
-    ExtentTest report;
-    ExtentReports extent;
-    ExtentHtmlReporter htmlReporter;
+    static Random numRand;
+    static File screenshot;
+    public static ExtentTest report;
+    static ExtentReports extent;
+    static ExtentHtmlReporter htmlReporter;
 
-    public void flowName(String flowName) {
+    public static void initializeReport() {
         extent = new ExtentReports();
         htmlReporter = new ExtentHtmlReporter(
-                "target/reports/Report.html");
+                PropertiesConfig.getParameter("ReportName"));
         htmlReporter.setAppendExisting(true);
         extent.attachReporter(htmlReporter);
-        report = extent.createTest(flowName);
+        report = extent.createTest(PropertiesConfig.getParameter("ReportTitle"));
         report.assignAuthor(System.getProperty("user.name"));
         report.assignAuthor(System.getProperty("os.name"));
     }
 
-    public void screenshot(WebDriver driver, String msg, String status, By locator) {
+    public static void screenshot(WebDriver driver, String msg, String status, By locator) {
         JavascriptExecutor je = (JavascriptExecutor) driver;
-        je.executeScript("arguments[0].style.border='5px solid green'", driver.findElement(locator));
+        je.executeScript(PropertiesConfig.getParameter("ArgumentHighlightActivate"), driver.findElement(locator));
         screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String name = pictureName();
         try {
-            FileUtils.copyFile(screenshot, new File(System.getProperty("user.dir") + "\\target\\reports\\pictures\\" + name + ".png"));
+            FileUtils.copyFile(screenshot, new File(System.getProperty("user.dir") + PropertiesConfig.getParameter("ReportPath") + name + ".png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,10 +72,10 @@ public class ReportConfig {
             default:
                 System.out.println(" !! Status not such !!");
         }
-        je.executeScript("arguments[0].style.border=''", driver.findElement(locator));
+        je.executeScript(PropertiesConfig.getParameter("ArgumentHighlightDeactivate"), driver.findElement(locator));
     }
 
-    public void logReport(String log, String status) {
+    public static void logReport(String log, String status) {
         switch (status) {
             case "pass":
                 report.log(Status.PASS, log);
@@ -86,11 +91,11 @@ public class ReportConfig {
         }
     }
 
-    public void createReport() {
+    public static void generateReport() {
         extent.flush();
     }
 
-    public String pictureName() {
+    static String pictureName() {
         String lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345674890";
         String namePicture = "";
         numRand = new Random();

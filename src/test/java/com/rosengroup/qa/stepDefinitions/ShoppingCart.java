@@ -1,10 +1,9 @@
-package com.rosengroup.qa.stepDefinirions;
+package com.rosengroup.qa.stepDefinitions;
 
 import com.rosengroup.qa.steps.AddToShoppingCart;
 import com.rosengroup.qa.steps.DeleteFromShoppingCart;
 import com.rosengroup.qa.steps.ValidateShoppingCart;
 import com.rosengroup.qa.utils.DriverConfig;
-import com.rosengroup.qa.utils.PropertiesConfig;
 import com.rosengroup.qa.utils.ReportConfig;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -13,40 +12,36 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
+import static com.rosengroup.qa.utils.DriverConfig.*;
+import static com.rosengroup.qa.utils.ReportConfig.initializeReport;
 import static java.lang.Integer.parseInt;
 
+/**
+ * @autor: Camilo Chaparro
+ * @version: 1.0.0
+ * @since: 1.0.0
+ */
 public class ShoppingCart {
 
     String products;
-    WebDriver driver;
-    WebDriverWait wait;
-    ReportConfig report;
-    DriverConfig configDriver;
     AddToShoppingCart addToShoppingCart;
     ValidateShoppingCart validateShoppingCart;
     DeleteFromShoppingCart deleteFromShoppingCart;
 
     @Before
     public void initialConfig(){
-        report = new ReportConfig();
-        configDriver = new DriverConfig();
-        driver = configDriver.selectNavigator();
-        wait = new WebDriverWait(driver,
-                Duration.ofSeconds(Long.parseLong(
-                        PropertiesConfig.getParameter("WaitDurationExpected"))));
-        driver.navigate().to(PropertiesConfig.getParameter("web"));
+        initializeDriver();
+        waitDriver();
+        initializeReport();
     }
 
     @Given("The customer wants to test the functionality of the shopping cart")
     public void initialStep() {
-        addToShoppingCart = new AddToShoppingCart(driver, report, wait);
-        validateShoppingCart = new ValidateShoppingCart(driver, report, wait);
-        deleteFromShoppingCart = new DeleteFromShoppingCart(driver, report, wait);
+        ReportConfig.logReport(DriverConfig.driver.getCurrentUrl(), "info");
+        addToShoppingCart = new AddToShoppingCart();
+        validateShoppingCart = new ValidateShoppingCart();
+        deleteFromShoppingCart = new DeleteFromShoppingCart();
     }
 
     @When("^He adds (.*) products to the shopping cart$")
@@ -80,8 +75,7 @@ public class ShoppingCart {
 
     @After
     public void cleanUp(){
-        driver.close();
-        driver.quit();
-        report.createReport();
+        ReportConfig.generateReport();
+        disconnectDriver();
     }
 }

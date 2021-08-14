@@ -3,6 +3,11 @@ package com.rosengroup.qa.utils;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+/**
+ * @autor: Camilo Chaparro
+ * @version: 1.0.0
+ * @since: 1.0.0
+ */
 public class PropertiesConfig {
 
     static Properties prop;
