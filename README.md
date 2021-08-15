@@ -1,6 +1,6 @@
 # Test_Make_Web_Purchases
 
-Wxecution requirements:
+Execution requirements:
 * Java 1.8
 * Maven 3.8.1
 
