@@ -20,8 +20,6 @@ public class DriverConfig {
     private static WebDriverWait wait;
     private static WebDriver driver;
 
-    private DriverConfig(){}
-
     public static WebDriver getDriver() {
         return driver;
     }

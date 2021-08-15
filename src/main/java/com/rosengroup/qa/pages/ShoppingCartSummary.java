@@ -13,7 +13,6 @@ public class ShoppingCartSummary {
     private By row_product_deleted;
     private final By label_shopping_cart_empty = By.xpath("//ul[@id='order_step']//following::p");
 
-
     public By getImg_item_delete() {
         return img_item_delete;
     }

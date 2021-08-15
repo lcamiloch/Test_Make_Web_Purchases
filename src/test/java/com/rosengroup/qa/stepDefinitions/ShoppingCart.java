@@ -2,7 +2,7 @@ package com.rosengroup.qa.stepDefinitions;
 
 import com.rosengroup.qa.steps.AddToShoppingCart;
 import com.rosengroup.qa.steps.DeleteFromShoppingCart;
-import com.rosengroup.qa.steps.ValidateShoppingCart;
+import com.rosengroup.qa.steps.checkShoppingCart;
 import com.rosengroup.qa.utils.DriverConfig;
 import com.rosengroup.qa.utils.ReportConfig;
 import io.cucumber.java.After;
@@ -27,7 +27,7 @@ public class ShoppingCart {
 
     String products;
     AddToShoppingCart addToShoppingCart;
-    ValidateShoppingCart validateShoppingCart;
+    checkShoppingCart checkShoppingCart;
     DeleteFromShoppingCart deleteFromShoppingCart;
 
     @Before
@@ -41,7 +41,7 @@ public class ShoppingCart {
     public void initialStep() {
         ReportConfig.logReport(DriverConfig.getDriver().getCurrentUrl(), "info");
         addToShoppingCart = new AddToShoppingCart();
-        validateShoppingCart = new ValidateShoppingCart();
+        checkShoppingCart = new checkShoppingCart();
         deleteFromShoppingCart = new DeleteFromShoppingCart();
     }
 
@@ -59,7 +59,7 @@ public class ShoppingCart {
         addToShoppingCart.itemNine();
         addToShoppingCart.itemTen();
         Assert.assertEquals(products,
-                validateShoppingCart.validatePurchasedProducts());
+                checkShoppingCart.checkPurchasedProducts());
     }
 
     @And("He then deletes them")
@@ -70,12 +70,12 @@ public class ShoppingCart {
 
     @Then("^He should see the shopping cart (.*)$")
     public void VerifyEmptyShoppingCart(String key) {
-        Assert.assertTrue(validateShoppingCart
-                .validateRemovedProducts().contains(key));
+        Assert.assertTrue(checkShoppingCart
+                .checkRemovedProducts().contains(key));
     }
 
     @After
-    public void cleanUp(){
+    public void Disconnection(){
         ReportConfig.generateReport();
         disconnectDriver();
     }

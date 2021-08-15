@@ -14,13 +14,8 @@ import org.openqa.selenium.support.ui.Select;
  */
 public class Functions {
 
-    Actions builder;
-
-    public Functions(){
-        builder = new Actions(DriverConfig.getDriver());
-    }
-
     public void moveToElementAndClick(By locator){
+        Actions builder = new Actions(DriverConfig.getDriver());
         Action actionMove = builder
                 .moveToElement(DriverConfig.getDriver().findElement(locator)).click().build();
         ReportConfig.screenshot(DriverConfig.getDriver(), "Selected item", "info", locator);

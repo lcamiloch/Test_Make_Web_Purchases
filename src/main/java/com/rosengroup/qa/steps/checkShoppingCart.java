@@ -11,31 +11,31 @@ import com.rosengroup.qa.utils.ReportConfig;
  * @version: 1.0.0
  * @since: 1.0.0
  */
-public class ValidateShoppingCart extends Functions {
+public class checkShoppingCart extends Functions {
 
     String products;
     HomePage homePage;
     ShoppingCartSummary shoppingCartSummary;
 
-    public ValidateShoppingCart(){
+    public checkShoppingCart(){
         homePage = new HomePage();
         shoppingCartSummary = new ShoppingCartSummary();
     }
 
-    public String validatePurchasedProducts(){
+    public String checkPurchasedProducts(){
         scrollToWebElement(homePage.getImg_title());
         products = DriverConfig.getDriver()
                 .findElement(homePage.getLabel_products_numbers()).getText();
         ReportConfig.screenshot(DriverConfig.getDriver(),
-                "Validate products", "pass", homePage.getLabel_products_numbers());
+                "Check products", "pass", homePage.getLabel_products_numbers());
         return products;
     }
 
-    public String validateRemovedProducts(){
+    public String checkRemovedProducts(){
         products = DriverConfig.getDriver()
                 .findElement(shoppingCartSummary.getLabel_shopping_cart_empty()).getText();
         ReportConfig.screenshot(DriverConfig.getDriver(),
-                "Validate shopping cart empty", "pass", shoppingCartSummary.getLabel_shopping_cart_empty());
+                "Check shopping cart empty", "pass", shoppingCartSummary.getLabel_shopping_cart_empty());
         return products;
     }
 }
