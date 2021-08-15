@@ -2,7 +2,7 @@
 
 Wxecution requirements:
 * Java 1.8
-* Maaven 3.8.1
+* Maven 3.8.1
 
 
 Execution video:
