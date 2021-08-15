@@ -1,7 +1,7 @@
 # Test_Make_Web_Purchases
 
-execution requirements:
-* java 1.8
+Wxecution requirements:
+* Java 1.8
 * Maaven 3.8.1
 
 
