@@ -20,62 +20,53 @@ public class AddToShoppingCart extends Functions {
     }
 
     public void itemOne() {
-        productNumber++;
         scrollToWebElement(homePage.getImg_item_first());
         addItemAndContinueShopping(homePage.getImg_item_first());
     }
 
     public void itemTwo() {
-        productNumber++;
         addItemAndContinueShopping(homePage.getImg_item_second());
     }
 
     public void itemThree() {
-        productNumber++;
         addItemAndContinueShopping(homePage.getImg_item_third());
     }
 
     public void itemFour() {
-        productNumber++;
         addItemAndContinueShopping(homePage.getImg_item_fourth());
     }
 
     public void itemFive() {
-        productNumber++;
         scrollToWebElement(homePage.getImg_item_fifth());
         addItemAndContinueShopping(homePage.getImg_item_fifth());
     }
 
     public void itemSix() {
-        productNumber++;
         addItemAndContinueShopping(homePage.getImg_item_sixth());
     }
 
     public void itemSeven() {
-        productNumber++;
         addItemAndContinueShopping(homePage.getImg_item_seventh());
     }
 
     public void itemEight() {
-        productNumber++;
         changeColor = true;
         scrollToWebElement(homePage.getImg_item_first());
         addItemAndContinueShopping(homePage.getImg_item_first());
     }
 
     public void itemNine() {
-        productNumber++;
         changeColor = true;
         addItemAndContinueShopping(homePage.getImg_item_second());
     }
 
     public void itemTen() {
-        productNumber++;
         changeColor = true;
         addItemAndContinueShopping(homePage.getImg_item_third());
     }
 
     public void addItemAndContinueShopping(By item){
+        productNumber++;
         moveToElementAndClick(item);
         if(changeColor){
             selectDropDownListSize(homePage.getDropdown_List_Size(),
