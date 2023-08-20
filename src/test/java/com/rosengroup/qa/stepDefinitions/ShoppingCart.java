@@ -5,17 +5,12 @@ import com.rosengroup.qa.steps.DeleteFromShoppingCart;
 import com.rosengroup.qa.steps.checkShoppingCart;
 import com.rosengroup.qa.utils.DriverConfig;
 import com.rosengroup.qa.utils.ReportConfig;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-
-import static com.rosengroup.qa.utils.DriverConfig.*;
-import static com.rosengroup.qa.utils.ReportConfig.initializeReport;
 import static java.lang.Integer.parseInt;
 
 /**
@@ -29,13 +24,6 @@ public class ShoppingCart {
     AddToShoppingCart addToShoppingCart;
     checkShoppingCart checkShoppingCart;
     DeleteFromShoppingCart deleteFromShoppingCart;
-
-    @Before
-    public void initialConfig(){
-        initializeDriver();
-        waitDriver();
-        initializeReport();
-    }
 
     @Given("The customer wants to test the functionality of the shopping cart")
     public void initialStep() {
@@ -72,11 +60,5 @@ public class ShoppingCart {
     public void VerifyEmptyShoppingCart(String key) {
         Assert.assertTrue(checkShoppingCart
                 .checkRemovedProducts().contains(key));
-    }
-
-    @After
-    public void Disconnection(){
-        ReportConfig.generateReport();
-        disconnectDriver();
     }
 }
