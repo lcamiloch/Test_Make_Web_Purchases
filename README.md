@@ -7,3 +7,7 @@ Execution requirements:
 
 Execution video:
 https://www.loom.com/share/39d182d5867349edb30fc650fd532408
+
+
+Run project:
+$ mvn clean verify -Dcucumber.filter.tags="@google"
