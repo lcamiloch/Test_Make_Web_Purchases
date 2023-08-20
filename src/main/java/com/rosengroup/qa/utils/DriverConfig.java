@@ -32,8 +32,10 @@ public class DriverConfig {
     public static void initializeDriver(){
         switch (PropertiesConfig.getParameter("Browser")){
             case "chrome":
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless=new");
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(options);
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
